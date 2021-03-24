@@ -1,7 +1,18 @@
 import {useState} from 'react';
+
+/* material-ui */
+import {makeStyles} from '@material-ui/core/styles';
+
+/* axios */
 import axios from 'axios';
 
+const useStyles = makeStyles(theme => ({
+    divStyle: {
+        border: '1px solid red'
+    }
+}))
 export default function CallUsers(){
+    const classes = useStyles();
     const [data, setData] = useState([]);
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
@@ -20,7 +31,7 @@ export default function CallUsers(){
         e.preventDefault();
     }
     return(
-        <div>
+        <div className={classes.divStyle}>
             <div>
                 <form onSubmit={submitHandler}>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="type username"/>
