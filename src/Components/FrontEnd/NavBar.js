@@ -43,7 +43,7 @@ export default function NavBarComp(){
         <nav className={classes.navStyle}>
             <ul className={classes.ulStyle}>
                 <Link to="/users"className={classes.LinkStyle}><li className={classes.liStyle}>Users</li></Link>
-                <li className={classes.liStyle}>Repos</li>
+                <Link to="/repos"className={classes.LinkStyle}><li className={classes.liStyle}>Repos</li></Link>
             </ul>
         </nav>
     )
