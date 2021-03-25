@@ -55,22 +55,23 @@ const useStyles = makeStyles(theme => ({
 }))
 export default function CallUsers(){
     const classes = useStyles();
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(undefined);
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
 
     const searchUsers = () => {
         setLoading(true)
-        axios.get("https://api.github.com/users/"+username).then((res) => {
+        axios.get(`https://api.github.com/users/${username}`).then((res) => {
             setData(res.data)
             setLoading(false)
-        }
-        
-        )}
+        })
+        .catch((err) => console.log(err))
+    }
 
     const submitHandler = (e) => {
         e.preventDefault();
     }
+    
     return(
         <div className="App">
             <Typography className={classes.typoTitle}>Search Github users</Typography>
@@ -80,7 +81,7 @@ export default function CallUsers(){
                 </form>
                 {loading && <h1>Loading...</h1>}
                 <div>
-                    {username.length > 0 && (
+                    {data && (
                         <Grid container spacing={1} justify="center" alignItems="center">
                         <Grid item xs={12} sm={10} md={3}>
                             <Card className={classes.cardStyle}>
